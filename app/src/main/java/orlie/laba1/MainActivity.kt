@@ -2,6 +2,7 @@ package orlie.laba1
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.SystemClock
 import android.view.View
 import android.widget.AbsListView
 import android.widget.Button
@@ -31,12 +32,16 @@ class MainActivity : AppCompatActivity(){
                 } else {
                     if (last!=it){ // если выбранная ранее не эта же
                         //val clicksText = findViewById<Button>(R.id.button1)
-                        var str: String? = couples[last] as? String
+                        var str: String? = couples[it] as? String
                         //clicksText.setText("$str")
                         (it as Button)?.setText("$str") // раскрываем выбранную
-                        if (couples[last]===choosen){ // если значения совпадают
+                        SystemClock.sleep(1000)
+                        if (couples[it]===choosen){ // если значения совпадают
                             it.setVisibility(View.GONE) // скрываем выбранную
                             last?.setVisibility(View.GONE) // скрываем выбранную ранее
+                            var str: String? = couples[last]
+                            it.setText("$str") // закрываем выбранную
+                            last?.setText("$str")// закрываем выбранную ранее
                         } else {
                             it.setText("") // закрываем выбранную
                             last?.setText("")// закрываем выбранную ранее
