@@ -3,6 +3,8 @@ package orlie.laba1
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.SystemClock
+import android.util.Log
+import android.util.LogPrinter
 import android.view.View
 import android.widget.AbsListView
 import android.widget.Button
@@ -25,10 +27,11 @@ class MainActivity : AppCompatActivity(){
             k?.setOnClickListener {
                 if (last==null){ // если никакая не выбрана
                     //last = button // занести нынешнюю в выбранную
-                    choosen = couples[last]
+                    //choosen = couples[last]
                     last = it as Button
                     //last?.setText("$couples[last]") // раскрываем выбранную
                     var str: String? = couples[last]
+                    choosen = str
                     it.setText("$str")
                 } else {
                     if (last!=it){ // если выбранная ранее не эта же
@@ -38,13 +41,17 @@ class MainActivity : AppCompatActivity(){
                         (it as Button)?.setText("$str") // раскрываем выбранную
                         //SystemClock.sleep(1000)
                         handler.postDelayed({
-                            if (couples[it]===choosen){ // если значения совпадают
-                            it.setVisibility(View.GONE) // скрываем выбранную
-                            last?.setVisibility(View.GONE) // скрываем выбранную ранее
+                            if (couples[it].equals(choosen)){ // если значения совпадают
+                                Log.e("Look","$choosen")
+                            //it.setVisibility(View.GONE) // скрываем выбранную
+                            //last?.setVisibility(View.GONE) // скрываем выбранную ранее
                         } else {
+                                Log.e("Looks","$choosen")
                             it.setText("") // закрываем выбранную
                             last?.setText("")// закрываем выбранную ранее
                         }
+                            choosen = ""
+                            last = null
                         }, 2000)
                         /*if (couples[it]===choosen){ // если значения совпадают
                             it.setVisibility(View.GONE) // скрываем выбранную
@@ -54,8 +61,8 @@ class MainActivity : AppCompatActivity(){
                             last?.setText("")// закрываем выбранную ранее
                         }*/
                         //last = null // обнуляем выбранную ранее
-                        choosen = ""
-                        last = null
+                        /*choosen = ""
+                        last = null*/
                     }
                 }
             }
