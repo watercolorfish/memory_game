@@ -19,6 +19,7 @@ class MainActivity : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        val handler = android.os.Handler()
         RandGen()
         for ((k) in couples){
             k?.setOnClickListener {
@@ -35,17 +36,23 @@ class MainActivity : AppCompatActivity(){
                         var str: String? = couples[it] as? String
                         //clicksText.setText("$str")
                         (it as Button)?.setText("$str") // раскрываем выбранную
-                        SystemClock.sleep(1000)
-                        if (couples[it]===choosen){ // если значения совпадают
-                            //it.setVisibility(View.GONE) // скрываем выбранную
-                            //last?.setVisibility(View.GONE) // скрываем выбранную ранее
-                            var str: String? = couples[last]
-                            it.setText("$str") // закрываем выбранную
-                            last?.setText("$str")// закрываем выбранную ранее
+                        //SystemClock.sleep(1000)
+                        handler.postDelayed({
+                            if (couples[it]===choosen){ // если значения совпадают
+                            it.setVisibility(View.GONE) // скрываем выбранную
+                            last?.setVisibility(View.GONE) // скрываем выбранную ранее
                         } else {
                             it.setText("") // закрываем выбранную
                             last?.setText("")// закрываем выбранную ранее
                         }
+                        }, 2000)
+                        /*if (couples[it]===choosen){ // если значения совпадают
+                            it.setVisibility(View.GONE) // скрываем выбранную
+                            last?.setVisibility(View.GONE) // скрываем выбранную ранее
+                        } else {
+                            it.setText("") // закрываем выбранную
+                            last?.setText("")// закрываем выбранную ранее
+                        }*/
                         //last = null // обнуляем выбранную ранее
                         choosen = ""
                         last = null
