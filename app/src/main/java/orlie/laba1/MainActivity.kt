@@ -30,15 +30,15 @@ class MainActivity : AppCompatActivity(){
                     it.setText("$str")
                 } else {
                     if (last!=it){ // если выбранная ранее не эта же
-                        val clicksText = findViewById<Button>(R.id.button1)
+                        //val clicksText = findViewById<Button>(R.id.button1)
                         var str: String? = couples[last] as? String
-                        clicksText.setText("$str")
-                        last?.setText("$str") // раскрываем выбранную
+                        //clicksText.setText("$str")
+                        (it as Button)?.setText("$str") // раскрываем выбранную
                         if (couples[last]===choosen){ // если значения совпадают
                             it.setVisibility(View.GONE) // скрываем выбранную
                             last?.setVisibility(View.GONE) // скрываем выбранную ранее
                         } else {
-                            (it as Button).setText("") // закрываем выбранную
+                            it.setText("") // закрываем выбранную
                             last?.setText("")// закрываем выбранную ранее
                         }
                         //last = null // обнуляем выбранную ранее
