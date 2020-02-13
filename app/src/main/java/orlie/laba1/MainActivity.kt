@@ -37,8 +37,8 @@ class MainActivity : AppCompatActivity(){
                         (it as Button)?.setText("$str") // раскрываем выбранную
                         SystemClock.sleep(1000)
                         if (couples[it]===choosen){ // если значения совпадают
-                            it.setVisibility(View.GONE) // скрываем выбранную
-                            last?.setVisibility(View.GONE) // скрываем выбранную ранее
+                            //it.setVisibility(View.GONE) // скрываем выбранную
+                            //last?.setVisibility(View.GONE) // скрываем выбранную ранее
                             var str: String? = couples[last]
                             it.setText("$str") // закрываем выбранную
                             last?.setText("$str")// закрываем выбранную ранее
