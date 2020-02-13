@@ -5,14 +5,75 @@ import android.os.Bundle
 import android.view.View
 import android.widget.AbsListView
 import android.widget.Button
+import android.widget.TextView
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlin.random.Random
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(){
 
-    var couples = intArrayOf(0,0,0,0,0,0,0,0,0,0,0,0)
-    var choosen = intArrayOf(0,0)
+    var couples: MutableMap<Button?,String> = mutableMapOf()
+    var choosen: String? = null
+    var last: Button?=null
+    //var lastv: View?=null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        RandGen()
+        for ((k) in couples){
+            k?.setOnClickListener {
+                if (last==null){ // если никакая не выбрана
+                    //last = button // занести нынешнюю в выбранную
+                    choosen = couples[last]
+                    last = it as Button
+                    //last?.setText("$couples[last]") // раскрываем выбранную
+                    var str: String? = couples[last]
+                    it.setText("$str")
+                } else {
+                    if (last!=it){ // если выбранная ранее не эта же
+                        val clicksText = findViewById<Button>(R.id.button1)
+                        var str: String? = couples[last] as? String
+                        clicksText.setText("$str")
+                        last?.setText("$str") // раскрываем выбранную
+                        if (couples[last]===choosen){ // если значения совпадают
+                            it.setVisibility(View.GONE) // скрываем выбранную
+                            last?.setVisibility(View.GONE) // скрываем выбранную ранее
+                        } else {
+                            (it as Button).setText("") // закрываем выбранную
+                            last?.setText("")// закрываем выбранную ранее
+                        }
+                        //last = null // обнуляем выбранную ранее
+                        choosen = ""
+                        last = null
+                    }
+                }
+            }
+        }
+    }
+
+    fun RandGen(){
+        var pl = 0
+        val arr = arrayOf(0,0,0,0,0,0,0,0,0,0,0,0)
+        repeat(2){
+            var s = 6
+            do {
+                pl = Random.nextInt(0, 12)
+                if (arr[pl] == 0) {
+                    arr[pl]=s
+                    s--
+                }
+            } while(s>0)
+        }
+        couples.put(findViewById(R.id.button1),arr[0].toString())
+        couples.put(findViewById(R.id.button2),arr[1].toString())
+        couples.put(findViewById(R.id.button3),arr[2].toString())
+        couples.put(findViewById(R.id.button4),arr[3].toString())
+        couples.put(findViewById(R.id.button5),arr[4].toString())
+        couples.put(findViewById(R.id.button6),arr[5].toString())
+        couples.put(findViewById(R.id.button7),arr[6].toString())
+        couples.put(findViewById(R.id.button8),arr[7].toString())
+        couples.put(findViewById(R.id.button9),arr[8].toString())
+        couples.put(findViewById(R.id.button10),arr[9].toString())
+        couples.put(findViewById(R.id.button11),arr[10].toString())
+        couples.put(findViewById(R.id.button12),arr[11].toString())
     }
 }
