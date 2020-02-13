@@ -26,43 +26,27 @@ class MainActivity : AppCompatActivity(){
         for ((k) in couples){
             k?.setOnClickListener {
                 if (last==null){ // если никакая не выбрана
-                    //last = button // занести нынешнюю в выбранную
-                    //choosen = couples[last]
                     last = it as Button
-                    //last?.setText("$couples[last]") // раскрываем выбранную
                     var str: String? = couples[last]
                     choosen = str
                     it.setText("$str")
                 } else {
                     if (last!=it){ // если выбранная ранее не эта же
-                        //val clicksText = findViewById<Button>(R.id.button1)
                         var str: String? = couples[it] as? String
-                        //clicksText.setText("$str")
                         (it as Button)?.setText("$str") // раскрываем выбранную
-                        //SystemClock.sleep(1000)
                         handler.postDelayed({
                             if (couples[it].equals(choosen)){ // если значения совпадают
-                                Log.e("Look","$choosen")
+                                //Log.e("Look","$choosen")
                             //it.setVisibility(View.GONE) // скрываем выбранную
                             //last?.setVisibility(View.GONE) // скрываем выбранную ранее
                         } else {
-                                Log.e("Looks","$choosen")
+                                //Log.e("Looks","$choosen")
                             it.setText("") // закрываем выбранную
                             last?.setText("")// закрываем выбранную ранее
                         }
                             choosen = ""
                             last = null
                         }, 2000)
-                        /*if (couples[it]===choosen){ // если значения совпадают
-                            it.setVisibility(View.GONE) // скрываем выбранную
-                            last?.setVisibility(View.GONE) // скрываем выбранную ранее
-                        } else {
-                            it.setText("") // закрываем выбранную
-                            last?.setText("")// закрываем выбранную ранее
-                        }*/
-                        //last = null // обнуляем выбранную ранее
-                        /*choosen = ""
-                        last = null*/
                     }
                 }
             }
