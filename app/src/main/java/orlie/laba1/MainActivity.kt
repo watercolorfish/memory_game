@@ -50,13 +50,13 @@ class MainActivity : AppCompatActivity(){
                                 }
                                 //last?.setClickable(false)
                                 //Log.e("Look","$choosen")
-                            //it.setVisibility(View.GONE) // скрываем выбранную
-                            //last?.setVisibility(View.GONE) // скрываем выбранную ранее
-                        } else {
+                                //it.setVisibility(View.GONE) // скрываем выбранную
+                                //last?.setVisibility(View.GONE) // скрываем выбранную ранее
+                            } else {
                                 //Log.e("Looks","$choosen")
-                            it.setText("") // закрываем выбранную
-                            last?.setText("")// закрываем выбранную ранее
-                        }
+                                it.setText("") // закрываем выбранную
+                                last?.setText("")// закрываем выбранную ранее
+                            }
                             choosen = ""
                             last = null
                         }, 1000)
