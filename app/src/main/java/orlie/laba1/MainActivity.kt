@@ -18,12 +18,14 @@ class MainActivity : AppCompatActivity(){
     var choosen: String? = null
     var last: Button?=null
     var couplesNum=6
+    var counter = 0
     //var lastv: View?=null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val handler = android.os.Handler()
         RandGen()
+        val textView = findViewById<TextView>(R.id.textView3)
         for ((k) in couples){
             k?.setOnClickListener {
                 if (last==null){ // если никакая не выбрана
@@ -32,6 +34,7 @@ class MainActivity : AppCompatActivity(){
                     choosen = str
                     it.setText("$str")
                 } else {
+                    textView.text = "Счет: ${++counter}"
                     if (last!=it){ // если выбранная ранее не эта же
                         var str: String? = couples[it] as? String
                         (it as Button)?.setText("$str") // раскрываем выбранную
@@ -42,6 +45,7 @@ class MainActivity : AppCompatActivity(){
                                 it.isEnabled=false
                                 last?.isEnabled=false
                                 if (couplesNum==0){
+                                    textView.text = "Счет: 0"
                                     init()
                                 }
                                 //last?.setClickable(false)
@@ -66,6 +70,7 @@ class MainActivity : AppCompatActivity(){
         var pl = 0
         couplesNum=6
         var i=0
+        counter = 0
         val arr = arrayOf(0,0,0,0,0,0,0,0,0,0,0,0)
         repeat(2){
             var s = 6
