@@ -17,6 +17,7 @@ class MainActivity : AppCompatActivity(){
     var couples: MutableMap<Button?,String> = mutableMapOf()
     var choosen: String? = null
     var last: Button?=null
+    var couplesNum=6
     //var lastv: View?=null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +37,14 @@ class MainActivity : AppCompatActivity(){
                         (it as Button)?.setText("$str") // раскрываем выбранную
                         handler.postDelayed({
                             if (couples[it].equals(choosen)){ // если значения совпадают
+                                couplesNum--
+                                //it.setClickable(false)
+                                it.isEnabled=false
+                                last?.isEnabled=false
+                                if (couplesNum==0){
+                                    init()
+                                }
+                                //last?.setClickable(false)
                                 //Log.e("Look","$choosen")
                             //it.setVisibility(View.GONE) // скрываем выбранную
                             //last?.setVisibility(View.GONE) // скрываем выбранную ранее
@@ -46,10 +55,34 @@ class MainActivity : AppCompatActivity(){
                         }
                             choosen = ""
                             last = null
-                        }, 2000)
+                        }, 1000)
                     }
                 }
             }
+        }
+    }
+
+    fun init(){
+        var pl = 0
+        couplesNum=6
+        var i=0
+        val arr = arrayOf(0,0,0,0,0,0,0,0,0,0,0,0)
+        repeat(2){
+            var s = 6
+            do {
+                pl = Random.nextInt(0, 12)
+                if (arr[pl] == 0) {
+                    arr[pl]=s
+                    s--
+                }
+            } while(s>0)
+        }
+        i=0
+        for((k) in couples){
+            k?.isEnabled=true
+            couples[k]=arr[i].toString()
+            i++
+            k?.setText("")
         }
     }
 
