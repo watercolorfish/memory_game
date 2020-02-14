@@ -34,7 +34,6 @@ class MainActivity : AppCompatActivity(){
                     choosen = str
                     it.setText("$str")
                 } else {
-                    textView.text = "Счет: ${++counter}"
                     if (last!=it){ // если выбранная ранее не эта же
                         var str: String? = couples[it] as? String
                         (it as Button)?.setText("$str") // раскрываем выбранную
@@ -53,6 +52,7 @@ class MainActivity : AppCompatActivity(){
                                 //it.setVisibility(View.GONE) // скрываем выбранную
                                 //last?.setVisibility(View.GONE) // скрываем выбранную ранее
                             } else {
+                                textView.text = "Счет: ${++counter}"
                                 //Log.e("Looks","$choosen")
                                 it.setText("") // закрываем выбранную
                                 last?.setText("")// закрываем выбранную ранее
